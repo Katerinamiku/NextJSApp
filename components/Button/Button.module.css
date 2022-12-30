@@ -13,6 +13,10 @@
   color: var(--white);
   background-color: var(--primary);
 }
+.primary svg,
+.ghost:hover svg {
+  fill: var(--white);
+}
 .primary:hover {
   background-color: var(--primary-hover);
 }
@@ -20,11 +24,13 @@
 .ghost {
   color: var(--black);
   background: none;
-  border: 1px solid var(--gray-light);
+  border: 1px solid var(--grey-light);
 }
 .ghost:hover {
-  border: 1px solid var(--primary);
+  color: var(--white);
+  background-color: var(--primary);
 }
+
 .arrow {
   display: inline-block;
   margin-left: 10px;
