@@ -1,8 +1,8 @@
 import { ButtonProps } from "./Button.props";
 import s from "./Button.module.css";
 import cn from "classnames";
-import Image from "next/image";
 import ArrowIcon from "./right-arrow.svg";
+import ArrowIconComponent from "./ArrowIconComponent";
 
 export const Button = ({
   appearance,
@@ -27,7 +27,8 @@ export const Button = ({
             [s.right]: arrow === "right",
           })}
         >
-          <ArrowIcon />
+          <ArrowIconComponent />
+          {/* <ArrowIcon /> */}
         </span>
       )}
     </button>

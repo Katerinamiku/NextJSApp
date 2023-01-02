@@ -47,6 +47,7 @@ declare module "*.ico" {
 
 declare module "*.bmp" {
   const content: import("../dist/client/image").StaticImageData;
+  import { ReactComponentElement, ReactSVGElement } from "react";
 
   export default content;
 }
