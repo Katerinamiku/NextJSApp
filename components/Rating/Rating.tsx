@@ -1,8 +1,9 @@
 import { RatingProps } from "./Rating.props";
 import s from "./Rating.module.css";
-import { useState, useEffect, KeyboardEvent } from "react";
-import StarIcon from "./star.svg";
+import React, { useState, useEffect, KeyboardEvent } from "react";
 import cn from "classnames";
+import Star from "./star.svg";
+import StarIconComponent from "./starSvgComponent";
 
 export const Rating = ({
   isEditable = false,
@@ -50,13 +51,18 @@ export const Rating = ({
           onMouseEnter={() => changeDisplay(i + 1)}
           onMouseLeave={() => changeDisplay(rating)}
           onClick={() => onRatingChange(i + 1)}
+          tabIndex={isEditable ? 0 : -1}
+          onKeyDown={(e: KeyboardEvent<HTMLSpanElement>) =>
+            isEditable && handleSpace(i + 1, e)
+          }
         >
-          <StarIcon
+          {/* <Star
             tabIndex={isEditable ? 0 : -1}
             onKeyDown={(e: KeyboardEvent<SVGElement>) =>
               isEditable && handleSpace(i + 1, e)
             }
-          />
+          /> */}
+          <StarIconComponent />
         </span>
       );
     });

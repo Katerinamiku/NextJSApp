@@ -7,13 +7,11 @@ import { Footer } from "./Footer/Footer";
 
 export const Layout = ({ children, ...rest }: LayoutProps): JSX.Element => {
   return (
-    <>
-      <Header />
-      <div>
-        <Sidebar />
-        <div>{children}</div>
-      </div>
-      <Footer />
-    </>
+    <div className={s.wrapper}>
+      <Header className={s.header} />
+      <Sidebar className={s.sidebar} />
+      <div className={s.body}>{children}</div>
+      <Footer className={s.footer} />
+    </div>
   );
 };
