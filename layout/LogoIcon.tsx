@@ -1,8 +1,8 @@
 export default function ItemsIconComponent() {
   return (
     <svg
-      width="30px"
-      height="30px"
+      width="50px"
+      height="50px"
       viewBox="0 0 512 512"
       xmlns="http://www.w3.org/2000/svg"
       fill="#be3455"
