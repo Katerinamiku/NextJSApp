@@ -1,3 +1,4 @@
+import { priceEur } from "../../helpers/helpers";
 import { Card } from "../Card/Card";
 import StarRoundIconComponent from "../Card/starRoundSvgComponent";
 import s from "./HhData.module.css";
@@ -20,7 +21,7 @@ export const HhData = ({
       <Card className={s.salary}>
         <div>
           <div className={s.title}>Junior</div>
-          <div className={s.salaryValue}>{juniorSalary}</div>
+          <div className={s.salaryValue}>{priceEur(juniorSalary)}</div>
           <div className={s.rate}>
             <span className={s.filled}>
               <StarRoundIconComponent />
@@ -36,7 +37,7 @@ export const HhData = ({
 
         <div>
           <div className={s.title}>Middle</div>
-          <div className={s.salaryValue}>{middleSalary}</div>
+          <div className={s.salaryValue}>{priceEur(middleSalary)}</div>
           <div className={s.rate}>
             <span className={s.filled}>
               <StarRoundIconComponent />
@@ -52,7 +53,7 @@ export const HhData = ({
 
         <div>
           <div className={s.title}>Senior</div>
-          <div className={s.salaryValue}>{seniorSalary}</div>
+          <div className={s.salaryValue}>{priceEur(seniorSalary)}</div>
           <div className={s.rate}>
             <span className={s.filled}>
               <StarRoundIconComponent />

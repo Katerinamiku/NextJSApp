@@ -2,7 +2,11 @@ import { Htag } from "../../components/Htag/Htag";
 import { Tag } from "../../components/Tag/Tag";
 import { TopPageComponentProps } from "./TopPageComponentProps";
 import s from "./TopPageComponent.module.css";
-import { HhData } from "../../components/hhData/hhData";
+import { HhData } from "../../components/hhData/HhData";
+import { TopLevelCategory } from "../../interfaces/topPage.interface";
+import { Advantages } from "../../components/Advantages/Advantages";
+import { Paragraph } from "../../components/Paragrph/Paragraph";
+
 export const TopPageComponent = ({
   page,
   products,
@@ -28,7 +32,28 @@ export const TopPageComponent = ({
           hh.ru
         </Tag>
       </div>
-      <HhData {...page.hh} />
+      {firstCategory === TopLevelCategory.Courses && page.hh && (
+        <HhData {...page.hh} />
+      )}
+      {page.advantages && page.advantages.length > 0 && (
+        <>
+          <Htag tag="h2">
+            <Advantages advantages={page.advantages} />
+          </Htag>
+        </>
+      )}
+      {page.seoText && (
+        <div
+          className={s.seo}
+          dangerouslySetInnerHTML={{ __html: page.seoText }}
+        />
+      )}
+      <Htag tag="h2">Skills</Htag>
+      {page.tags.map((t) => (
+        <Tag color={"primary"} key={t}>
+          {t}
+        </Tag>
+      ))}
     </div>
   );
 };
