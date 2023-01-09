@@ -8,6 +8,8 @@ import { withLayout } from "../HOCs/withLayout";
 import { GetStaticProps } from "next";
 import axios from "axios";
 import { MenuItem } from "./../interfaces/menu.interface";
+import { Input } from "../components/Input/Input";
+import { Textarea } from "../components/Textarea/Textarea";
 
 function Home({ menu }: HomeProps): JSX.Element {
   const [rating, setRating] = useState<number>(3);
@@ -37,6 +39,8 @@ function Home({ menu }: HomeProps): JSX.Element {
         small primary
       </Tag>
       <Rating rating={rating} isEditable setRating={setRating}></Rating>
+      <Input />
+      <Textarea />
     </>
   );
 }
