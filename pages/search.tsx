@@ -1,4 +1,6 @@
+import { withLayout } from "../HOCs/withLayout";
+
 function Search(): JSX.Element {
-  return <>gjcbr</>;
+  return <>search page</>;
 }
-export default Search;
+export default withLayout(Search);

@@ -36,4 +36,10 @@ export const priceEur = (price: number): string =>
   price
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, " ")
-    .concat("€");
+    .concat("Kč");
+
+export const devlOfNum = (number: number): string => {
+  return number === 0 || (number % 100 > 1 && number % 100 < 20)
+    ? "reviews"
+    : "review";
+};
