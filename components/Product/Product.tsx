@@ -7,7 +7,7 @@ import { Tag } from "../Tag/Tag";
 import { Button } from "../Button/Button";
 import { devlOfNum, priceEur } from "../../helpers/helpers";
 import { Divider } from "./../Divider/Divider";
-
+import Image from "next/image";
 export const Product = ({
   product,
   className,
@@ -16,9 +16,11 @@ export const Product = ({
   return (
     <Card className={s.product}>
       <div className={s.logo}>
-        <img
+        <Image
           src={process.env.NEXT_PUBLIC_DOMAIN + product.image}
           alt={product.title}
+          width={70}
+          height={70}
         />
       </div>
       <div className={s.title}>{product.title}</div>
@@ -76,7 +78,7 @@ export const Product = ({
           </div>
         )}
       </div>
-      <Divider className={s.hr} />
+      <Divider className={cn(s.hr, s.hr2)} />
       <div className={s.actions}>
         <Button appearance="primary">Learn more</Button>
         <Button appearance="ghost" arrow={"right"} className={s.reviewButton}>
