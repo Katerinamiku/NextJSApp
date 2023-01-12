@@ -4,13 +4,14 @@ import s from "./Textarea.module.css";
 
 export const Textarea = ({
   className,
+  placeholder,
   ...rest
 }: TextareaProps): JSX.Element => {
   return (
     <textarea
       className={cn(className, s.textarea)}
       {...rest}
-      placeholder={"test"}
+      placeholder={placeholder}
     />
   );
 };
