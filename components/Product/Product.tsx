@@ -93,7 +93,7 @@ export const Product = ({
             className={s.reviewButton}
             onClick={() => setIsReviewOpened(!isReviewOpened)}
           >
-            Read reviews
+            Reviews
           </Button>
         </div>
       </Card>
@@ -105,10 +105,10 @@ export const Product = ({
         })}
       >
         {product.reviews.map((r) => (
-          <>
-            <Review review={r} key={r._id} />
+          <div key={r._id}>
+            <Review review={r} />
             <Divider />
-          </>
+          </div>
         ))}
         <ReviewForm productId={product._id} />
       </Card>

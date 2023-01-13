@@ -8,6 +8,7 @@ import StarIconComponent from "./starSvgComponent";
 export const Rating = ({
   isEditable = false,
   rating,
+  error,
   setRating,
   ...rest
 }: RatingProps): JSX.Element => {
@@ -56,12 +57,6 @@ export const Rating = ({
             isEditable && handleSpace(i + 1, e)
           }
         >
-          {/* <Star
-            tabIndex={isEditable ? 0 : -1}
-            onKeyDown={(e: KeyboardEvent<SVGElement>) =>
-              isEditable && handleSpace(i + 1, e)
-            }
-          /> */}
           <StarIconComponent />
         </span>
       );
@@ -70,10 +65,16 @@ export const Rating = ({
   };
 
   return (
-    <div {...rest}>
+    <div
+      className={cn(s.ratingWrapper, {
+        [s.error]: error,
+      })}
+      {...rest}
+    >
       {ratingArray.map((r, i) => (
         <span key={i}>{r}</span>
       ))}
+      {error && <span className={s.errorMessage}>{error.message}</span>}
     </div>
   );
 };
