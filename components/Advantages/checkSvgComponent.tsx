@@ -11,11 +11,11 @@ export default function CheckIconComponent({}) {
         cx="12"
         cy="12"
         r="9"
-        fill-opacity="0.24"
+        fillOpacity="0.24"
         stroke="#222222"
-        stroke-width="1.2"
+        strokeWidth="1.2"
       />
-      <path d="M8 12L11 15L16 9" stroke="#222222" stroke-width="1.2" />
+      <path d="M8 12L11 15L16 9" stroke="#222222" strokeWidth="1.2" />
     </svg>
   );
 }
