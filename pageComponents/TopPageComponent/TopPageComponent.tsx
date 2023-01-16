@@ -5,10 +5,9 @@ import s from "./TopPageComponent.module.css";
 import { HhData } from "../../components/hhData/HhData";
 import { TopLevelCategory } from "../../interfaces/topPage.interface";
 import { Advantages } from "../../components/Advantages/Advantages";
-import { Paragraph } from "../../components/Paragrph/Paragraph";
 import { SortEnum } from "../../components/Sort/Sort.props";
 import { Sorting } from "../../components/Sort/Sort";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { sortReducer } from "./sort.reducer";
 import { Product } from "../../components/Product/Product";
 
@@ -27,6 +26,9 @@ export const TopPageComponent = ({
   const setSort = (sort: SortEnum) => {
     dispatchSort({ type: sort });
   };
+  useEffect(() => {
+    dispatchSort({ type: "reset", initialState: products });
+  }, [products]);
   return (
     <div className={s.wrapper}>
       <div className={s.title}>
@@ -39,7 +41,8 @@ export const TopPageComponent = ({
         <Sorting sort={sort} setSort={setSort} />
       </div>
       <div>
-        {products && products.map((p) => <Product key={p._id} product={p} />)}
+        {sortedProducts &&
+          sortedProducts.map((p) => <Product key={p._id} product={p} />)}
       </div>
       <div className={s.hhTitle}>
         <Htag tag={"h2"}>Vacancies - {page.category}</Htag>

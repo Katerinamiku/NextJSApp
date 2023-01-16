@@ -22,3 +22,4 @@ export const Input = forwardRef(
     );
   }
 );
+Input.displayName = "Inpunt";
