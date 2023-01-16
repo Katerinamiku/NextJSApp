@@ -12,8 +12,13 @@ import { ProductModel } from "../../interfaces/product.interface";
 import { firstLevelMenu } from "./../../helpers/helpers";
 import { TopPageComponent } from "./../../pageComponents/TopPageComponent/TopPageComponent";
 import { API } from "../../helpers/api";
+import { Error404 } from "../404";
 
 function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
+  if (!page || !products) {
+    return <Error404 />;
+  }
+
   return (
     <TopPageComponent
       firstCategory={firstCategory}
@@ -36,7 +41,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 
   return {
-    paths: paths,
+    paths,
     fallback: true,
   };
 };
@@ -59,14 +64,15 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({
     const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find, {
       firstCategory: firstCategoryItem.id,
     });
-    const { data: page } = await axios.get<TopPageModel>(
-      API.topPage.byAlias + params.alias
-    );
     if (menu.length === 0) {
       return {
         notFound: true,
       };
     }
+    const { data: page } = await axios.get<TopPageModel>(
+      API.topPage.byAlias + params.alias
+    );
+
     const { data: products } = await axios.post<ProductModel[]>(
       API.product.find,
       { category: page.category, limit: 10 }
