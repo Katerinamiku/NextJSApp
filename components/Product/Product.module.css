@@ -46,6 +46,7 @@
   font-size: 16px;
   line-height: 32px;
   align-items: baseline;
+  gap: 10px;
 }
 
 .logo img {
@@ -124,13 +125,17 @@
 
 .closed {
   overflow: hidden;
-  max-width: 0;
+  max-height: 0;
   padding: 0;
 }
 
 .opened {
   max-height: auto;
   padding: 30px;
+}
+
+.ratingTitle a {
+  color: var(--primary);
 }
 
 @media screen and (max-width: 1320px) {

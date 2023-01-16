@@ -8,7 +8,7 @@ import { Button } from "../Button/Button";
 import { devlOfNum, priceEur } from "../../helpers/helpers";
 import { Divider } from "./../Divider/Divider";
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Review } from "../Review/Review";
 import { ReviewForm } from "../ReviewForm/ReviewForm";
 export const Product = ({
@@ -16,10 +16,17 @@ export const Product = ({
   className,
   ...rest
 }: ProductProps): JSX.Element => {
-  const [isReviewOpened, setIsReviewOpened] = useState<boolean>(true);
-
+  const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
+  const reviewRef = useRef<HTMLDivElement>(null);
+  const scrollToReview = () => {
+    setIsReviewOpened(true);
+    reviewRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
   return (
-    <>
+    <div className={className} {...rest}>
       <Card className={s.product}>
         <div className={s.logo}>
           <Image
@@ -55,7 +62,9 @@ export const Product = ({
         <div className={s.priceTitle}>Price</div>
         <div className={s.creditTitle}>Credit</div>
         <div className={s.ratingTitle}>
-          {product.reviewCount} {devlOfNum(product.reviewCount)}
+          <a href="#ref" onClick={scrollToReview}>
+            {product.reviewCount} {devlOfNum(product.reviewCount)}
+          </a>
         </div>
 
         <Divider className={s.hr} />
@@ -98,6 +107,7 @@ export const Product = ({
         </div>
       </Card>
       <Card
+        ref={reviewRef}
         color="blue"
         className={cn(s.reviews, {
           [s.opened]: isReviewOpened,
@@ -112,6 +122,6 @@ export const Product = ({
         ))}
         <ReviewForm productId={product._id} />
       </Card>
-    </>
+    </div>
   );
 };

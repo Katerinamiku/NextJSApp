@@ -3,7 +3,7 @@ import { SearchProps } from "./Search.props";
 import s from "./Search.module.css";
 import { Button } from "../Button/Button";
 import { Input } from "../Input/Input";
-import { useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import SearchIconComponent from "./SearchIconComponent";
 import { useRouter } from "next/router";
 
@@ -18,7 +18,7 @@ export const Search = ({ className, ...rest }: SearchProps): JSX.Element => {
       },
     });
   };
-  const handleKeydown = (e: KeyboardEvent) => {
+  const handleKeydown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       goToSearch();
     }

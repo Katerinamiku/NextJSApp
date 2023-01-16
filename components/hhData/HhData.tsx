@@ -2,7 +2,7 @@ import { priceEur } from "../../helpers/helpers";
 import { Card } from "../Card/Card";
 import StarRoundIconComponent from "../Card/starRoundSvgComponent";
 import s from "./HhData.module.css";
-import { HhDataProps } from "./hhData.props";
+import { HhDataProps } from "./HhData.props";
 
 export const HhData = ({
   count,

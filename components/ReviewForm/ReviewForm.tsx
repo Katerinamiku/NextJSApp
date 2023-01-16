@@ -38,8 +38,16 @@ export const ReviewForm = ({
       } else {
         setError("Something weng wrong!");
       }
-    } catch (e) {
-      setError(e.message);
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        if (!err?.response) {
+          setError("No Server Response");
+        } else if (err.response?.status === 400) {
+          setError("Missing Username or Password");
+        } else {
+          setError("Login Failed");
+        }
+      }
     }
   };
   return (
