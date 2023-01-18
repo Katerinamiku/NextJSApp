@@ -1,8 +1,9 @@
 import s from "./Up.module.css";
-import UpIconComponent from "./UpIconComponent";
+
 import { useScrollY } from "./../../HOCs/useScrollY";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
+import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
 
 export const Up = (): JSX.Element => {
   const y = useScrollY();
@@ -17,13 +18,13 @@ export const Up = (): JSX.Element => {
     });
   };
   return (
-    <motion.button
+    <motion.div
       className={s.up}
       onClick={scrollToTop}
       animate={controls}
       initial={{ opacity: 0 }}
     >
-      <UpIconComponent />
-    </motion.button>
+      <ButtonIcon appearance={"primary"} icon={"up"} onClick={scrollToTop} />
+    </motion.div>
   );
 };
