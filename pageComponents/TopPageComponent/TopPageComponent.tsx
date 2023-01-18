@@ -9,7 +9,7 @@ import { SortEnum } from "../../components/Sort/Sort.props";
 import { Sorting } from "../../components/Sort/Sort";
 import { useEffect, useReducer } from "react";
 import { sortReducer } from "./sort.reducer";
-import { Product } from "../../components/Product/Product";
+import Product from "../../components/Product/Product";
 
 export const TopPageComponent = ({
   page,
@@ -42,7 +42,7 @@ export const TopPageComponent = ({
       </div>
       <div>
         {sortedProducts &&
-          sortedProducts.map((p) => <Product key={p._id} product={p} />)}
+          sortedProducts.map((p) => <Product key={p._id} product={p} layout />)}
       </div>
       <div className={s.hhTitle}>
         <Htag tag={"h2"}>Vacancies - {page.category}</Htag>

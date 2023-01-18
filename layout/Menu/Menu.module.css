@@ -25,12 +25,13 @@
   border-left: 1px solid #dfdfdf;
 }
 .secondLevelBlock {
-  display: none;
+  overflow: hidden;
 }
-.secondLevelBlockOpened:last-child {
+
+/* .secondLevelBlockOpened:last-child {
   display: block;
   margin-bottom: 20px;
-}
+} */
 
 .secondLevel {
   margin-bottom: 10px;
