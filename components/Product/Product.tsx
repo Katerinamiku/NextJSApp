@@ -27,6 +27,13 @@ const Product = forwardRef(
         block: "start",
       });
     };
+    const variants = {
+      visible: {
+        opacity: 1,
+        height: "auto",
+      },
+      hidden: { opacity: 0, height: 0 },
+    };
     return (
       <div className={className} {...rest} ref={ref}>
         <Card className={s.product}>
@@ -109,22 +116,21 @@ const Product = forwardRef(
             </Button>
           </div>
         </Card>
-        <Card
-          ref={reviewRef}
-          color="blue"
-          className={cn(s.reviews, {
-            [s.opened]: isReviewOpened,
-            [s.closed]: !isReviewOpened,
-          })}
+        <motion.div
+          animate={isReviewOpened ? "visible" : "hidden"}
+          variants={variants}
+          initial={"hidden"}
         >
-          {product.reviews.map((r) => (
-            <div key={r._id}>
-              <Review review={r} />
-              <Divider />
-            </div>
-          ))}
-          <ReviewForm productId={product._id} />
-        </Card>
+          <Card ref={reviewRef} color="blue" className={s.reviews}>
+            {product.reviews.map((r) => (
+              <div key={r._id}>
+                <Review review={r} />
+                <Divider />
+              </div>
+            ))}
+            <ReviewForm productId={product._id} />
+          </Card>
+        </motion.div>
       </div>
     );
   }

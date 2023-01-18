@@ -10,12 +10,15 @@ import { Sorting } from "../../components/Sort/Sort";
 import { useEffect, useReducer } from "react";
 import { sortReducer } from "./sort.reducer";
 import Product from "../../components/Product/Product";
+import { useScrollY } from "./../../HOCs/useScrollY";
 
 export const TopPageComponent = ({
   page,
   products,
   firstCategory,
 }: TopPageComponentProps): JSX.Element => {
+  const y = useScrollY();
+
   const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(
     sortReducer,
     {
