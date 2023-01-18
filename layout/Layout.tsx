@@ -4,6 +4,7 @@ import s from "./Layout.module.css";
 import { Sidebar } from "./Sidebar/Sidebar";
 import { Header } from "./Header/Header";
 import { Footer } from "./Footer/Footer";
+import { Up } from "../components/Up/Up";
 
 export const Layout = ({ children, ...rest }: LayoutProps): JSX.Element => {
   return (
@@ -12,6 +13,7 @@ export const Layout = ({ children, ...rest }: LayoutProps): JSX.Element => {
       <Sidebar className={s.sidebar} />
       <div className={s.body}>{children}</div>
       <Footer className={s.footer} />
+      <Up />
     </div>
   );
 };
