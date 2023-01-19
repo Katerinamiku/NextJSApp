@@ -27,15 +27,15 @@ a {
 }
 
 :root {
-  --black: #3b434e;
+  --black: #121418;
   --grey-light: #aba9a9;
-  --grey-dark: #787d85;
+  --grey-dark: #4d5157;
   --white: white;
   --primary: #be3455;
   --primary-hover: #a93863;
   --red: #fc836d;
   --red-light: #f0b9af;
-  --green: #1dc37e;
-  --green-light: #c8f8e4;
+  --green: #027646;
+  --green-light: #a6f8d6;
   --font-family: "Noto Sans", sans-serif;
 }
