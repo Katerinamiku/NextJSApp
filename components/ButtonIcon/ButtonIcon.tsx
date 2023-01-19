@@ -13,7 +13,7 @@ export const ButtonIcon = ({
     <button
       className={cn(s.button, className, {
         [s.primary]: appearance === "primary",
-        [s.ghost]: appearance === "white",
+        [s.white]: appearance === "white",
       })}
       {...rest}
     >
