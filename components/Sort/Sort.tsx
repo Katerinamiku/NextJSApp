@@ -2,16 +2,23 @@ import s from "./Sort.module.css";
 import cn from "classnames";
 import { SortEnum, SortProps } from "./Sort.props";
 import SortIconComponent from "./SortSvgComponent";
-
+import { KeyboardEvent } from "react";
 export const Sorting = ({
   sort,
   setSort,
   className,
   ...rest
 }: SortProps): JSX.Element => {
+  const sortKey = (key: KeyboardEvent) => {
+    if (key.code === "Enter" || key.code === "Space") {
+      key.preventDefault();
+      setSort(SortEnum.Rating);
+    }
+  };
+
   return (
     <div className={cn(s.sort, className)} {...rest}>
-      <span
+      <button
         onClick={() => setSort(SortEnum.Rating)}
         className={cn({
           [s.active]: sort === SortEnum.Rating,
@@ -19,8 +26,8 @@ export const Sorting = ({
       >
         <SortIconComponent />
         Rating
-      </span>
-      <span
+      </button>
+      <button
         onClick={() => setSort(SortEnum.Price)}
         className={cn({
           [s.active]: sort === SortEnum.Price,
@@ -28,7 +35,7 @@ export const Sorting = ({
       >
         <SortIconComponent />
         Price
-      </span>
+      </button>
     </div>
   );
 };
