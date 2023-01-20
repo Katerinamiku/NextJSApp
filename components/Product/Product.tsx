@@ -26,6 +26,7 @@ const Product = forwardRef(
         behavior: "smooth",
         block: "start",
       });
+      reviewRef.current?.focus();
     };
     const variants = {
       visible: {
@@ -121,14 +122,19 @@ const Product = forwardRef(
           variants={variants}
           initial={"hidden"}
         >
-          <Card ref={reviewRef} color="blue" className={s.reviews}>
+          <Card
+            ref={reviewRef}
+            tabIndex={isReviewOpened ? 0 : -1}
+            color="blue"
+            className={s.reviews}
+          >
             {product.reviews.map((r) => (
               <div key={r._id}>
                 <Review review={r} />
                 <Divider />
               </div>
             ))}
-            <ReviewForm productId={product._id} />
+            <ReviewForm productId={product._id} isOpened={isReviewOpened} />
           </Card>
         </motion.div>
       </div>

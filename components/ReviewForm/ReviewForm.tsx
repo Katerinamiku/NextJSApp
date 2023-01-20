@@ -15,6 +15,7 @@ import { useState } from "react";
 export const ReviewForm = ({
   productId,
   className,
+  isOpened,
   ...rest
 }: ReviewFormProps): JSX.Element => {
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
@@ -59,6 +60,7 @@ export const ReviewForm = ({
           })}
           placeholder="Name"
           error={errors.name}
+          tabIndex={isOpened ? 0 : -1}
         />
         <Input
           {...register("title", {
@@ -67,6 +69,7 @@ export const ReviewForm = ({
           className={s.titleInput}
           placeholder="Title"
           error={errors.title}
+          tabIndex={isOpened ? 0 : -1}
         />
         <div className={s.rating}>
           <span>Rating:</span>
@@ -82,6 +85,7 @@ export const ReviewForm = ({
                 rating={field.value}
                 setRating={field.onChange}
                 error={errors.rating}
+                tabIndex={isOpened ? 0 : -1}
               />
             )}
           />
@@ -93,9 +97,12 @@ export const ReviewForm = ({
           className={s.description}
           placeholder="Text"
           error={errors.description}
+          tabIndex={isOpened ? 0 : -1}
         />
         <div className={s.submit}>
-          <Button appearance="primary">Send</Button>
+          <Button appearance="primary" tabIndex={isOpened ? 0 : -1}>
+            Send
+          </Button>
           <span className={s.info}>
             *review will be moderated before publication
           </span>
