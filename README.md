@@ -1,4 +1,4 @@
-#Nextjs(typescript) project with SSR (source: CourseHunter)
+# Nextjs(typescript) project with SSR (source: CourseHunter)
 <br/>Website with online courses of multiple directions with description, rating, reviews/review form, sorting, tags. Accessibilty concidered. 
 
 
