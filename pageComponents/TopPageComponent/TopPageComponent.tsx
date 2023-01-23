@@ -11,6 +11,7 @@ import { useEffect, useReducer } from "react";
 import { sortReducer } from "./sort.reducer";
 import Product from "../../components/Product/Product";
 import { useScrollY } from "./../../HOCs/useScrollY";
+import { useReducedMotion } from "framer-motion";
 
 export const TopPageComponent = ({
   page,
@@ -26,6 +27,7 @@ export const TopPageComponent = ({
       sort: SortEnum.Rating,
     }
   );
+  const shouldReduceMotion = useReducedMotion();
   const setSort = (sort: SortEnum) => {
     dispatchSort({ type: sort });
   };
@@ -37,7 +39,11 @@ export const TopPageComponent = ({
       <div className={s.title}>
         <Htag tag={"h1"}>{page.title}</Htag>
         {products && (
-          <Tag color={"grey"} fontSize={"large"}>
+          <Tag
+            color={"grey"}
+            fontSize={"large"}
+            aria-label={products.length + "элементов"}
+          >
             {products.length}
           </Tag>
         )}
@@ -45,10 +51,16 @@ export const TopPageComponent = ({
       </div>
       <div>
         {sortedProducts &&
-          sortedProducts.map((p) => <Product key={p._id} product={p} layout />)}
+          sortedProducts.map((p) => (
+            <Product
+              key={p._id}
+              product={p}
+              layout={shouldReduceMotion ? false : true}
+            />
+          ))}
       </div>
       <div className={s.hhTitle}>
-        <Htag tag={"h2"}>Vacancies - {page.category}</Htag>
+        <Htag tag={"h2"}>Вакансии - {page.category}</Htag>
         <Tag color={"red"} fontSize={"large"}>
           hh.ru
         </Tag>
@@ -69,7 +81,7 @@ export const TopPageComponent = ({
           dangerouslySetInnerHTML={{ __html: page.seoText }}
         />
       )}
-      <Htag tag="h2">Skills</Htag>
+      <Htag tag="h2">Навыки</Htag>
       {page.tags.map((t) => (
         <Tag color={"primary"} key={t}>
           {t}

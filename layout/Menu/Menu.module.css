@@ -17,21 +17,22 @@
 .firstLevel:hover svg {
   fill: var(--primary);
 }
-
+.firsLevelList {
+  list-style: none;
+  padding: 0;
+}
 .secondBlock {
   margin-top: 15px;
   margin-left: 12px;
-  padding-left: 32px;
+  padding: 0 0 0 32px;
   border-left: 1px solid #dfdfdf;
+  list-style: none;
 }
 .secondLevelBlock {
   overflow: hidden;
+  list-style: none;
+  padding: 0;
 }
-
-/* .secondLevelBlockOpened:last-child {
-  display: block;
-  margin-bottom: 20px;
-} */
 
 .secondLevel {
   margin-bottom: 10px;
@@ -42,6 +43,9 @@
   font-size: 12px;
   line-height: 16px;
   outline-offset: -1px;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .thirdLevel {

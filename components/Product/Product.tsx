@@ -5,7 +5,7 @@ import { Card } from "../Card/Card";
 import { Rating } from "../Rating/Rating";
 import { Tag } from "../Tag/Tag";
 import { Button } from "../Button/Button";
-import { devlOfNum, priceEur } from "../../helpers/helpers";
+import { declOfNum, priceEur } from "../../helpers/helpers";
 import { Divider } from "./../Divider/Divider";
 import Image from "next/image";
 import { ForwardedRef, forwardRef, useRef, useState } from "react";
@@ -48,19 +48,26 @@ const Product = forwardRef(
           </div>
           <div className={s.title}>{product.title}</div>
           <div className={s.price}>
-            {priceEur(product.price)}
+            <span>
+              <span className={s.visuallyHidden}>Цена</span>
+              {priceEur(product.price)}
+            </span>
             {product.oldPrice && (
               <Tag color="green" className={s.oldPrice}>
+                <span className={s.visuallyHidden}>Скидка</span>
                 {priceEur(product.price - product.oldPrice)}
               </Tag>
             )}
           </div>
 
           <div className={s.credit}>
-            {priceEur(product.credit)} /{" "}
-            <span className={s.months}>months</span>
+            <span className={s.visuallyHidden}>Кредит</span>
+            {priceEur(product.credit)} / <span className={s.months}>месяц</span>
           </div>
           <div className={s.rating}>
+            <span className={s.visuallyHidden}>
+              {"Рейтинг" + (product.reviewAvg ?? product.initialRating)}
+            </span>
             <Rating rating={product.reviewAvg ?? product.initialRating} />
           </div>
           <div className={s.tags}>
@@ -70,11 +77,16 @@ const Product = forwardRef(
               </Tag>
             ))}
           </div>
-          <div className={s.priceTitle}>Price</div>
-          <div className={s.creditTitle}>Credit</div>
+          <div className={s.priceTitle} aria-hidden={true}>
+            Цена
+          </div>
+          <div className={s.creditTitle} aria-hidden={true}>
+            Кредит
+          </div>
           <div className={s.ratingTitle}>
             <a href="#ref" onClick={scrollToReview}>
-              {product.reviewCount} {devlOfNum(product.reviewCount)}
+              {product.reviewCount}{" "}
+              {declOfNum(product.reviewCount, ["отзыв", "отзыва", "отзывов"])}
             </a>
           </div>
 
@@ -93,27 +105,28 @@ const Product = forwardRef(
           <div className={s.advBlock}>
             {product.advantages && (
               <div className={s.advantages}>
-                <div className={s.advTitle}>Advantages</div>
+                <div className={s.advTitle}>Преимущества</div>
                 <div>{product.advantages}</div>
               </div>
             )}
             {product.disadvantages && (
               <div className={s.disadvantages}>
-                <div className={s.advTitle}>Disadvantages</div>
+                <div className={s.advTitle}>Недостатки</div>
                 <div>{product.disadvantages}</div>
               </div>
             )}
           </div>
           <Divider className={cn(s.hr, s.hr2)} />
           <div className={s.actions}>
-            <Button appearance="primary">Learn more</Button>
+            <Button appearance="primary">Узнать еще</Button>
             <Button
               appearance="ghost"
               arrow={isReviewOpened ? "down" : "right"}
               className={s.reviewButton}
               onClick={() => setIsReviewOpened(!isReviewOpened)}
+              aria-expanded={isReviewOpened}
             >
-              Reviews
+              Отзывы
             </Button>
           </div>
         </Card>

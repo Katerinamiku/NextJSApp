@@ -27,13 +27,13 @@ export const Layout = ({ children, ...rest }: LayoutProps): JSX.Element => {
           [s.displayed]: isDisplayed,
         })}
       >
-        To the content
+        К содержимому
       </a>
       <Header className={s.header} />
       <Sidebar className={s.sidebar} />
-      <div className={s.body} ref={bodyRef} tabIndex={0}>
+      <main className={s.body} ref={bodyRef} tabIndex={0} role="main">
         {children}
-      </div>
+      </main>
       <Footer className={s.footer} />
       <Up />
     </div>

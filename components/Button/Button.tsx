@@ -1,7 +1,6 @@
 import { ButtonProps } from "./Button.props";
 import s from "./Button.module.css";
 import cn from "classnames";
-
 import ArrowIconComponent from "./ArrowIconComponent";
 import { motion, useMotionValue } from "framer-motion";
 import { useEffect } from "react";
@@ -36,7 +35,6 @@ export const Button = ({
           })}
         >
           <ArrowIconComponent />
-          {/* <ArrowIcon /> */}
         </span>
       )}
     </motion.button>

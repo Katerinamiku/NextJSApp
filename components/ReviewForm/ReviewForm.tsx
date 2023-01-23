@@ -26,6 +26,7 @@ export const ReviewForm = ({
     handleSubmit,
     formState: { errors },
     reset,
+    clearErrors,
   } = useForm<IReviewForm>();
   const onSubmit = async (formData: IReviewForm) => {
     try {
@@ -58,21 +59,23 @@ export const ReviewForm = ({
           {...register("name", {
             required: { value: true, message: "Enter name" },
           })}
-          placeholder="Name"
+          placeholder="Имя"
           error={errors.name}
           tabIndex={isOpened ? 0 : -1}
+          aria-invalid={errors.name ? true : false}
         />
         <Input
           {...register("title", {
             required: { value: true, message: "Enter title" },
           })}
           className={s.titleInput}
-          placeholder="Title"
+          placeholder="Заголовок"
           error={errors.title}
           tabIndex={isOpened ? 0 : -1}
+          aria-invalid={errors.title ? true : false}
         />
         <div className={s.rating}>
-          <span>Rating:</span>
+          <span>Рейтинг:</span>
           <Controller
             control={control}
             name="rating"
@@ -95,38 +98,54 @@ export const ReviewForm = ({
             required: { value: true, message: "Enter text" },
           })}
           className={s.description}
-          placeholder="Text"
+          placeholder="Текст отзыва"
           error={errors.description}
           tabIndex={isOpened ? 0 : -1}
+          aria-label={"текст отзыва"}
+          aria-invalid={errors.description ? true : false}
         />
         <div className={s.submit}>
-          <Button appearance="primary" tabIndex={isOpened ? 0 : -1}>
-            Send
+          <Button
+            appearance="primary"
+            tabIndex={isOpened ? 0 : -1}
+            onClick={() => clearErrors()}
+          >
+            Отправить
           </Button>
           <span className={s.info}>
-            *review will be moderated before publication
+            *отзыв будет опубликован после модерации
           </span>
         </div>
       </div>
       {isSuccess && (
-        <div className={s.success}>
-          <div className={s.successTitle}>Your review was submited!</div>
+        <div className={s.success} role="alert">
+          <div className={s.successTitle}>Ваш отзыв был отправлен!</div>
           <div className={s.successDescription}>
-            Thank you. Your review wiil be published after moderation.
+            Спасибо. Ваш отзыв будет опубликован после модерации.
           </div>
-          <div className={s.close} onClick={() => setIsSuccess(false)}>
+          <button
+            className={s.close}
+            onClick={() => setIsSuccess(false)}
+            aria-label={"закрыть оповещение"}
+          >
+            {" "}
             <CrossSvgComponent />
-          </div>
+          </button>
         </div>
       )}
       {error && (
         <div className={s.error}>
           <div className={s.errorText}>
-            Something went wrong. Please, try again.
+            Что-то пошло не так. Пожалуйста, попробуйте еще раз.
           </div>
-          <div className={s.closeError} onClick={() => setError(undefined)}>
+          <button
+            className={s.closeError}
+            onClick={() => setError(undefined)}
+            aria-label={"закрыть оповещение"}
+          >
+            {" "}
             <CrossSvgComponent />
-          </div>
+          </button>
         </div>
       )}
     </form>

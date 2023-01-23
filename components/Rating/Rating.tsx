@@ -80,6 +80,12 @@ export const Rating = ({
           tabIndex={computeFocuse(rating, i)}
           onKeyDown={handleKey}
           ref={(r) => ratingArrayRef.current?.push(r)}
+          role={isEditable ? "slider" : ""}
+          aria-invalid={error ? true : false}
+          aria-valuenow={rating}
+          aria-valuemax={5}
+          aria-valuemin={1}
+          aria-label={isEditable ? "укажите рейтинг" : "рейтинг" + rating}
         >
           <StarIconComponent />
         </span>
@@ -98,7 +104,11 @@ export const Rating = ({
       {ratingArray.map((r, i) => (
         <span key={i}>{r}</span>
       ))}
-      {error && <span className={s.errorMessage}>{error.message}</span>}
+      {error && (
+        <span role="alert" className={s.errorMessage}>
+          {error.message}
+        </span>
+      )}
     </div>
   );
 };

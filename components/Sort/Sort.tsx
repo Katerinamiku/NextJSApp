@@ -18,23 +18,32 @@ export const Sorting = ({
 
   return (
     <div className={cn(s.sort, className)} {...rest}>
+      <div className={s.sortName} id={"sort"}>
+        Сортировка
+      </div>
       <button
+        id={"rating"}
         onClick={() => setSort(SortEnum.Rating)}
         className={cn({
           [s.active]: sort === SortEnum.Rating,
         })}
+        aria-pressed={sort === SortEnum.Rating}
+        aria-labelledby={"sort rating"}
       >
         <SortIconComponent />
-        Rating
+        По рейтингу
       </button>
       <button
+        id="price"
         onClick={() => setSort(SortEnum.Price)}
         className={cn({
           [s.active]: sort === SortEnum.Price,
         })}
+        aria-pressed={sort === SortEnum.Rating}
+        aria-labelledby={"sort price"}
       >
         <SortIconComponent />
-        Price
+        По цене
       </button>
     </div>
   );
