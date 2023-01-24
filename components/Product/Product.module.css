@@ -130,7 +130,12 @@
 .ratingTitle a {
   color: var(--primary);
 }
-
+.visuallyHidden {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+}
 @media screen and (max-width: 1320px) {
   .product {
     grid-template-columns: 70px 30px auto 40px auto 40px 1fr;

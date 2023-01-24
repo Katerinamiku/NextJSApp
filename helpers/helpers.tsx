@@ -8,25 +8,25 @@ import ItemsIconComponent from "../layout/Menu/icons/ItemsIconComp copy";
 export const firstLevelMenu: FirstLevelMenuItem[] = [
   {
     route: "courses",
-    name: "Courses",
+    name: "Курсы",
     icon: <CoursesIconComponent />,
     id: TopLevelCategory.Courses,
   },
   {
     route: "services",
-    name: "Services",
+    name: "Услуги",
     icon: <CloudIconComponent />,
     id: TopLevelCategory.Services,
   },
   {
     route: "books",
-    name: "Books",
+    name: "Книги",
     icon: <BookIconComponent />,
     id: TopLevelCategory.Books,
   },
   {
     route: "products",
-    name: "Products",
+    name: "Продукты",
     icon: <ItemsIconComponent />,
     id: TopLevelCategory.Products,
   },
@@ -38,8 +38,14 @@ export const priceEur = (price: number): string =>
     .replace(/\B(?=(\d{3})+(?!\d))/g, " ")
     .concat("Kč");
 
-export const devlOfNum = (number: number): string => {
-  return number === 0 || (number % 100 > 1 && number % 100 < 20)
-    ? "reviews"
-    : "review";
+export const declOfNum = (
+  number: number,
+  titles: [string, string, string]
+): string => {
+  const cases = [2, 0, 1, 1, 1, 2];
+  return titles[
+    number % 100 > 4 && number % 100 < 20
+      ? 2
+      : cases[number % 10 < 5 ? number % 10 : 5]
+  ];
 };

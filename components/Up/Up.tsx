@@ -1,5 +1,4 @@
 import s from "./Up.module.css";
-
 import { useScrollY } from "./../../HOCs/useScrollY";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
